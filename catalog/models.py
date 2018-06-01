@@ -30,6 +30,35 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_parameters(self):
+        parameters = ParameterProduct.objects.filter(
+            product_id__exact=self.id
+        ).order_by('priority')
+        return parameters
+
+    def get_categorys_with_parameters(self):
+        parameters = self.get_parameters()
+
+        categorys_ids = (parametr.category_id for parametr in parameters)
+        categorys_ids = list(set(categorys_ids))
+
+        categorys_objects = CategoryParameterProduct.objects.filter(
+            id__in=categorys_ids
+        ).order_by('priority')
+
+        categorys_with_parameters = []
+        for category in categorys_objects:
+            parameters_category = [
+                parameter for parameter in parameters
+                if parameter.category_id == category.id
+            ]
+            categorys_with_parameters.append({
+                'category': category.name,
+                'parameters': parameters_category,
+            })
+
+        return categorys_with_parameters
+
 
 def product_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/product_<id>/<filename>
@@ -67,3 +96,6 @@ class ParameterProduct(models.Model):
     category = models.ForeignKey(
         CategoryParameterProduct, on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return self.name

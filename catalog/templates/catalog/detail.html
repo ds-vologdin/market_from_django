@@ -5,5 +5,11 @@
 <h1>Описание продукта</h1>
 <h2>{{ product.name }}</h2>
 <p>{{ product.parameters }}<p>
+{% for category in categorys_parameters %}
+  <h3>{{ category.category }}</h3>
+  {% for parameter in category.parameters %}
+    <li>{{ parameter.name }}: {{ parameter.value }}</li>
+  {% endfor %}
+{% endfor %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% endblock content %}

@@ -1,6 +1,8 @@
 from django.views import generic
 
-from .models import Product, MainCategoryProduct, CategoryProduct
+from .models import (
+    Product, MainCategoryProduct, CategoryProduct, ParameterProduct
+)
 
 
 def get_categorys():
@@ -54,16 +56,25 @@ class CategoryView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['categorys'] = get_categorys()
         if 'main_category_id' in self.kwargs:
             context.update({
                 'main_category_product': MainCategoryProduct.objects.get(
                     pk=self.kwargs['main_category_id']
                 ),
-                'categorys': get_categorys(),
             })
         return context
 
 
-class DetailView(CategorysToContext, generic.DetailView):
+class DetailView(generic.DetailView):
     model = Product
     template_name = 'catalog/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'categorys_parameters': self.object.get_categorys_with_parameters(),
+            'categorys': get_categorys(),
+        })
+        print(context)
+        return context
