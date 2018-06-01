@@ -36,6 +36,13 @@ class Product(models.Model):
         ).order_by('priority')
         return parameters
 
+    def get_main_parameters(self):
+        ''' Параметры с приоритетом меньше 1000 '''
+        parameters = ParameterProduct.objects.filter(
+            product_id__exact=self.id
+        ).filter(priority__lte=1000).order_by('priority')
+        return parameters
+
     def get_categorys_with_parameters(self):
         parameters = self.get_parameters()
 

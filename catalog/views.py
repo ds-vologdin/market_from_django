@@ -74,6 +74,7 @@ class DetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context.update({
             'categorys_parameters': self.object.get_categorys_with_parameters(),
+            'main_parameters': self.object.get_main_parameters(),
             'categorys': get_categorys(),
         })
         print(context)
