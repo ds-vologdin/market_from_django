@@ -1,4 +1,9 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+<a href="/main_category/{{ product.category.main_category_id }}/">{{ product.category.main_category.name }}</a> - <a href="/category/{{ product.category_id }}/">{{ product.category.name }}</a>
 <h1>Описание продукта</h1>
 <h2>{{ product.name }}</h2>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% endblock content %}
