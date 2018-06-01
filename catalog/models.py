@@ -30,14 +30,11 @@ class Product(models.Model):
 
 
 def product_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}'.format(instance.product.id, filename)
+    # file will be uploaded to MEDIA_ROOT/product_<id>/<filename>
+    return 'product_{0}/{1}'.format(instance.product.id, filename)
 
 
 class ImagesProduct(models.Model):
     image_file = models.ImageField(upload_to=product_directory_path)
     priority = models.IntegerField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.image_file

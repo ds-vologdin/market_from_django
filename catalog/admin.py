@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Product, CategoryProduct, MainCategoryProduct
+from .models import Product, CategoryProduct, MainCategoryProduct, \
+    ImagesProduct
 # Register your models here.
 
 
@@ -9,8 +10,13 @@ class CategoryInline(admin.TabularInline):
     extra = 3
 
 
-class ProductInline(admin.TabularInline):
+class ProductInline(admin.StackedInline):
     model = Product
+    extra = 3
+
+
+class ImagesProductInline(admin.TabularInline):
+    model = ImagesProduct
     extra = 3
 
 
@@ -23,6 +29,7 @@ class ProductAdmin(admin.ModelAdmin):
     # list_display = ('question_text', 'pub_date', 'was_published_recently')
     # list_filter = ['pub_date']
     search_fields = ['name']
+    inlines = [ImagesProductInline]
 
 
 class CategoryProductAdmin(admin.ModelAdmin):
