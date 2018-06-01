@@ -24,6 +24,7 @@ class CategorysToContext():
         context.update({
             'categorys': get_categorys(),
         })
+        print(context)
         return context
 
 
@@ -39,10 +40,28 @@ class IndexView(CategorysToContext, generic.ListView):
         return Product.objects.all().order_by('-rating', 'cost')[:5]
 
 
-class MainCategoryDetail(CategorysToContext, generic.DetailView):
-    model = MainCategoryProduct
+class CategoryView(generic.ListView):
+    model = CategoryProduct
     template_name = 'catalog/main_category_detail.html'
-    context_object_name = 'main_category_product'
+    context_object_name = 'category_product_list'
+
+    def get_queryset(self):
+        if 'main_category_id' in self.kwargs:
+            return CategoryProduct.objects.filter(
+                main_category_id__exact=self.kwargs['main_category_id']
+            )
+        return CategoryProduct.objects.all().order_by('main_category')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'main_category_id' in self.kwargs:
+            context.update({
+                'main_category_product': MainCategoryProduct.objects.get(
+                    pk=self.kwargs['main_category_id']
+                ),
+                'categorys': get_categorys(),
+            })
+        return context
 
 
 class DetailView(CategorysToContext, generic.DetailView):

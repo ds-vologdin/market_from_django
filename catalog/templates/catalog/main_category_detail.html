@@ -3,5 +3,8 @@
 {% block content %}
 
 <h1>{{ main_category_product.name }}</h1>
+{% for category in category_product_list %}
+  <li><a href="{% url 'catalog:index_category' category.id %}">{{ category.name }}</a></li>
+{% endfor %}
 
 {% endblock content %}

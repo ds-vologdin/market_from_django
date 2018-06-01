@@ -11,8 +11,8 @@ urlpatterns = [
         name='index_category'
     ),
     path(
-        'maincategory/<int:pk>/',
-        views.MainCategoryDetail.as_view(),
+        'maincategory/<int:main_category_id>/',
+        views.CategoryView.as_view(),
         name='main_category'
     ),
     path('product/<int:pk>/', views.DetailView.as_view(), name='detail'),
