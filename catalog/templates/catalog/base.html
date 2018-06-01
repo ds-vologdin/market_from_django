@@ -69,12 +69,12 @@
                 {% for sub_category in category.sub %}
                   {% if category_product %}
                     {% if category_product.id == sub_category.id %}
-                      <a class="dropdown-item active" href="/category/{{ sub_category.id }}/">{{ sub_category.name }}</a>
+                      <a class="dropdown-item active" href="{% url 'catalog:index_category' sub_category.id %}">{{ sub_category.name }}</a>
                     {% else %}
-                      <a class="dropdown-item" href="/category/{{ sub_category.id }}/">{{ sub_category.name }}</a>
+                      <a class="dropdown-item" href="{% url 'catalog:index_category' sub_category.id %}">{{ sub_category.name }}</a>
                     {% endif %}
                   {% else %}
-                    <a class="dropdown-item" href="/category/{{ sub_category.id }}/">{{ sub_category.name }}</a>
+                    <a class="dropdown-item" href="{% url 'catalog:index_category' sub_category.id %}">{{ sub_category.name }}</a>
                   {% endif %}
                 {% endfor %}
               </div>

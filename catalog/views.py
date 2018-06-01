@@ -18,29 +18,32 @@ def get_categorys():
     return categorys
 
 
-# Create your views here.
-class IndexView(generic.ListView):
+class CategorysToContext():
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'categorys': get_categorys(),
+        })
+        return context
+
+
+class IndexView(CategorysToContext, generic.ListView):
     model = Product
     template_name = 'catalog/index.html'
 
     def get_queryset(self):
+        if 'category_id' in self.kwargs:
+            return Product.objects.filter(
+                category_id__exact=self.kwargs['category_id']
+            ).order_by('-rating', 'cost')[:5]
         return Product.objects.all().order_by('-rating', 'cost')[:5]
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context.update({
-            'categorys': get_categorys(),
-        })
-        return context
 
-
-class DetailView(generic.DetailView):
-    model = Product
+class DetailCategoryView(CategorysToContext, generic.DetailView):
+    model = CategoryProduct
     template_name = 'catalog/detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
-        context.update({
-            'categorys': get_categorys(),
-        })
-        return context
+
+class DetailView(CategorysToContext, generic.DetailView):
+    model = Product
+    template_name = 'catalog/detail.html'
