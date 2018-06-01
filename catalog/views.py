@@ -39,9 +39,10 @@ class IndexView(CategorysToContext, generic.ListView):
         return Product.objects.all().order_by('-rating', 'cost')[:5]
 
 
-class DetailCategoryView(CategorysToContext, generic.DetailView):
-    model = CategoryProduct
-    template_name = 'catalog/detail.html'
+class MainCategoryDetail(CategorysToContext, generic.DetailView):
+    model = MainCategoryProduct
+    template_name = 'catalog/main_category_detail.html'
+    context_object_name = 'main_category_product'
 
 
 class DetailView(CategorysToContext, generic.DetailView):

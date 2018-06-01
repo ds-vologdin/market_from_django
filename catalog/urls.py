@@ -10,5 +10,10 @@ urlpatterns = [
         views.IndexView.as_view(),
         name='index_category'
     ),
+    path(
+        'maincategory/<int:pk>/',
+        views.MainCategoryDetail.as_view(),
+        name='main_category'
+    ),
     path('product/<int:pk>/', views.DetailView.as_view(), name='detail'),
 ]

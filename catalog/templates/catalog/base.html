@@ -83,7 +83,7 @@
         </ul>
       </div>
     </nav>
-
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <div id="content" class="container-fluid">{% block content %}{% endblock %}</div>
     <div id="footer" class="container-fluid">
       {% block footer %}
