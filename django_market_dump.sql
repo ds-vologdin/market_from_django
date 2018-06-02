@@ -285,7 +285,8 @@ ALTER SEQUENCE public.catalog_categoryparameterproduct_id_seq OWNED BY public.ca
 CREATE TABLE public.catalog_categoryproduct (
     id integer NOT NULL,
     name character varying(200) NOT NULL,
-    main_category_id integer NOT NULL
+    main_category_id integer NOT NULL,
+    priority integer NOT NULL
 );
 
 
@@ -353,7 +354,8 @@ ALTER SEQUENCE public.catalog_imagesproduct_id_seq OWNED BY public.catalog_image
 
 CREATE TABLE public.catalog_maincategoryproduct (
     id integer NOT NULL,
-    name character varying(200) NOT NULL
+    name character varying(200) NOT NULL,
+    priority integer NOT NULL
 );
 
 
@@ -769,7 +771,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 36, true);
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$100000$La1qYsuoFAHy$PERk+bFSFAXfy2bAw6yfDU/QPt94lNatzpvO2DNPcT0=	2018-05-31 14:29:56.305966+00	t	bud			ds.vologdin@yandex.ru	t	t	2018-05-31 14:29:40.486761+00
+1	pbkdf2_sha256$100000$La1qYsuoFAHy$PERk+bFSFAXfy2bAw6yfDU/QPt94lNatzpvO2DNPcT0=	2018-06-02 15:29:52.16992+00	t	bud			ds.vologdin@yandex.ru	t	t	2018-05-31 14:29:40.486761+00
 \.
 
 
@@ -835,17 +837,23 @@ SELECT pg_catalog.setval('public.catalog_categoryparameterproduct_id_seq', 6, tr
 -- Data for Name: catalog_categoryproduct; Type: TABLE DATA; Schema: public; Owner: django
 --
 
-COPY public.catalog_categoryproduct (id, name, main_category_id) FROM stdin;
-6	Планшеты	2
-7	Ноутбуки	2
-8	Настольные компьютеры	2
-9	Серверы	2
-10	Стиральные машины	3
-11	Пылесосы	3
-12	Утюги	3
-14	Умные часы	4
-15	Телевизоры	4
-13	Телефоны	4
+COPY public.catalog_categoryproduct (id, name, main_category_id, priority) FROM stdin;
+6	Планшеты	2	1000
+7	Ноутбуки	2	1000
+8	Настольные компьютеры	2	1000
+9	Серверы	2	1000
+10	Стиральные машины	3	1000
+11	Пылесосы	3	1000
+12	Утюги	3	1000
+16	Для мам и малышей	5	1000
+17	Подгузники	5	1000
+18	Мебель	5	1000
+19	Корма	6	1000
+20	Игрушки	6	1000
+21	Средства гигиены	6	1000
+13	Телефоны	4	10
+14	Умные часы	4	20
+15	Телевизоры	4	30
 \.
 
 
@@ -853,7 +861,7 @@ COPY public.catalog_categoryproduct (id, name, main_category_id) FROM stdin;
 -- Name: catalog_categoryproduct_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.catalog_categoryproduct_id_seq', 15, true);
+SELECT pg_catalog.setval('public.catalog_categoryproduct_id_seq', 21, true);
 
 
 --
@@ -864,10 +872,10 @@ COPY public.catalog_imagesproduct (id, image_file, priority, product_id) FROM st
 7	product_3/i0.jpg	1	3
 8	product_3/i1.jpg	2	3
 9	product_3/i3.jpg	3	3
-10	product_2/Galaxy-S8.jpg	1	2
-11	product_2/Galaxy-S8-1.jpg	2	2
-12	product_1/thumb_114131_default_big.jpeg	1	1
-13	product_1/6cd00a8acda0263c3d0fe5fa38f09738.jpeg	2	1
+10	product_2/Galaxy-S8.jpg	2	2
+11	product_2/Galaxy-S8-1.jpg	1	2
+12	product_1/thumb_114131_default_big.jpeg	2	1
+13	product_1/6cd00a8acda0263c3d0fe5fa38f09738.jpeg	1	1
 \.
 
 
@@ -882,10 +890,12 @@ SELECT pg_catalog.setval('public.catalog_imagesproduct_id_seq', 13, true);
 -- Data for Name: catalog_maincategoryproduct; Type: TABLE DATA; Schema: public; Owner: django
 --
 
-COPY public.catalog_maincategoryproduct (id, name) FROM stdin;
-2	Компьютерная техника
-3	Бытовая техника
-4	Электроника
+COPY public.catalog_maincategoryproduct (id, name, priority) FROM stdin;
+3	Бытовая техника	20
+2	Компьютерная техника	30
+5	Детские товары	40
+6	Зоотовары	50
+4	Электроника	10
 \.
 
 
@@ -893,7 +903,7 @@ COPY public.catalog_maincategoryproduct (id, name) FROM stdin;
 -- Name: catalog_maincategoryproduct_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.catalog_maincategoryproduct_id_seq', 4, true);
+SELECT pg_catalog.setval('public.catalog_maincategoryproduct_id_seq', 6, true);
 
 
 --
@@ -914,6 +924,15 @@ COPY public.catalog_parameterproduct (id, name, value, type, priority, category_
 12	Размер изображения	2160x1080	str	20	2	3
 13	Фотовспышка	('тыльная', 'светодиодная')	list	1000	3	3
 1	Операционная система	IOS	str	0	1	3
+14	Операционная система	Android	str	10	1	2
+15	Оперативная память (ГБ)	16	int	30	5	2
+16	Количество ядер	8	int	20	5	2
+17	Фронтальная фотокамера	True	bool	1000	3	2
+18	Связь	(3g, 4g, wifi)	list	40	4	2
+19	Операционная система	Android	str	10	1	1
+20	Количество ядер	4	int	20	5	1
+21	Память (ГБ)	64	int	30	5	1
+22	Оперативная память (ГБ)	8	int	40	5	1
 \.
 
 
@@ -921,7 +940,7 @@ COPY public.catalog_parameterproduct (id, name, value, type, priority, category_
 -- Name: catalog_parameterproduct_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.catalog_parameterproduct_id_seq', 13, true);
+SELECT pg_catalog.setval('public.catalog_parameterproduct_id_seq', 22, true);
 
 
 --
@@ -929,9 +948,9 @@ SELECT pg_catalog.setval('public.catalog_parameterproduct_id_seq', 13, true);
 --
 
 COPY public.catalog_product (id, name, description, cost, rating, category_id, parameters) FROM stdin;
+3	Смартфон Apple iPhone 8 64GB	И это тоже не плохой телефон	47990.00	2	13	{}
 2	Смартфон Samsung Galaxy S8	хороший телефон	36990.00	4	13	{}
 1	Xiaomi Redmi 5 Plus 4/64GB	отличный телефон!	11890.00	5	13	{"\\\\u0421\\\\u0432\\\\u044f\\\\u0437\\\\u044c": {"priority": 3, "parameters": {"C\\\\u0438\\\\u0441\\\\u0442\\\\u0435\\\\u043c\\\\u0430 A-GPS": true}, "main_parameters": {"\\\\u0421\\\\u0442\\\\u0430\\\\u043d\\\\u0434\\\\u0430\\\\u0440\\\\u0442": ["GSM 900/1800/1900", "3G", "4G LTE"], "\\\\u0418\\\\u043d\\\\u0442\\\\u0435\\\\u0440\\\\u0444\\\\u0435\\\\u0439\\\\u0441\\\\u044b": ["Wi-Fi 802.11n", "Wi-Fi Direct", "Bluetooth 4.2", "USB"], "\\\\u0421\\\\u043f\\\\u0443\\\\u0442\\\\u043d\\\\u0438\\\\u043a\\\\u043e\\\\u0432\\\\u0430\\\\u044f \\\\u043d\\\\u0430\\\\u0432\\\\u0438\\\\u0433\\\\u0430\\\\u0446\\\\u0438\\\\u044f": ["GPS", "\\\\u0413\\\\u041b\\\\u041e\\\\u041d\\\\u0410\\\\u0421\\\\u0421", "BeiDou"]}}, "\\\\u042d\\\\u043a\\\\u0440\\\\u0430\\\\u043d": {"priority": 1, "parameters": {"\\\\u0422\\\\u0438\\\\u043f \\\\u044d\\\\u043a\\\\u0440\\\\u0430\\\\u043d\\\\u0430": ["\\\\u0446\\\\u0432\\\\u0435\\\\u0442\\\\u043d\\\\u043e\\\\u0439", "\\\\u0441\\\\u0435\\\\u043d\\\\u0441\\\\u043e\\\\u0440\\\\u043d\\\\u044b\\\\u0439"], "\\\\u0421\\\\u043e\\\\u043e\\\\u0442\\\\u043d\\\\u043e\\\\u0448\\\\u0435\\\\u043d\\\\u0438\\\\u0435 \\\\u0441\\\\u0442\\\\u043e\\\\u0440\\\\u043e\\\\u043d": "18:9", "\\\\u0422\\\\u0438\\\\u043f \\\\u0441\\\\u0435\\\\u043d\\\\u0441\\\\u043e\\\\u0440\\\\u043d\\\\u043e\\\\u0433\\\\u043e \\\\u044d\\\\u043a\\\\u0440\\\\u0430\\\\u043d\\\\u0430": ["\\\\u043c\\\\u0443\\\\u043b\\\\u044c\\\\u0442\\\\u0438\\\\u0442\\\\u0430\\\\u0447", "\\\\u0435\\\\u043c\\\\u043a\\\\u043e\\\\u0441\\\\u0442\\\\u043d\\\\u044b\\\\u0439"], "\\\\u0427\\\\u0438\\\\u0441\\\\u043b\\\\u043e \\\\u043f\\\\u0438\\\\u043a\\\\u0441\\\\u0435\\\\u043b\\\\u0435\\\\u0439 \\\\u043d\\\\u0430 \\\\u0434\\\\u044e\\\\u0439\\\\u043c (PPI)": 403}, "main_parameters": {"\\\\u0414\\\\u0438\\\\u0430\\\\u0433\\\\u043e\\\\u043d\\\\u0430\\\\u043b\\\\u044c": "5.99", "\\\\u0420\\\\u0430\\\\u0437\\\\u043c\\\\u0435\\\\u0440 \\\\u0438\\\\u0437\\\\u043e\\\\u0431\\\\u0440\\\\u0430\\\\u0436\\\\u0435\\\\u043d\\\\u0438\\\\u044f": "2160x1080"}}, "\\\\u041f\\\\u0438\\\\u0442\\\\u0430\\\\u043d\\\\u0438\\\\u0435": {"priority": 5, "parameters": {}, "main_parameters": {"\\\\u0415\\\\u043c\\\\u043a\\\\u043e\\\\u0441\\\\u0442\\\\u044c \\\\u0430\\\\u043a\\\\u043a\\\\u0443\\\\u043c\\\\u0443\\\\u043b\\\\u044f\\\\u0442\\\\u043e\\\\u0440\\\\u0430": 4000}}, "\\\\u041f\\\\u0430\\\\u043c\\\\u044f\\\\u0442\\\\u044c \\\\u0438 \\\\u043f\\\\u0440\\\\u043e\\\\u0446\\\\u0435\\\\u0441\\\\u0441\\\\u043e\\\\u0440": {"priority": 4, "parameters": {"\\\\u0421\\\\u043b\\\\u043e\\\\u0442 \\\\u0434\\\\u043b\\\\u044f \\\\u043a\\\\u0430\\\\u0440\\\\u0442 \\\\u043f\\\\u0430\\\\u043c\\\\u044f\\\\u0442\\\\u0438": true}, "main_parameters": {"\\\\u041f\\\\u0440\\\\u043e\\\\u0446\\\\u0435\\\\u0441\\\\u0441\\\\u043e\\\\u0440": "Qualcomm Snapdragon 625 MSM8953, 2000 \\\\u041c\\\\u0413\\\\u0446", "\\\\u0412\\\\u0438\\\\u0434\\\\u0435\\\\u043e\\\\u043f\\\\u0440\\\\u043e\\\\u0446\\\\u0435\\\\u0441\\\\u0441\\\\u043e\\\\u0440": "Adreno 506 ", "\\\\u041e\\\\u0431\\\\u044a\\\\u0435\\\\u043c \\\\u0432\\\\u0441\\\\u0442\\\\u0440\\\\u043e\\\\u0435\\\\u043d\\\\u043d\\\\u043e\\\\u0439 \\\\u043f\\\\u0430\\\\u043c\\\\u044f\\\\u0442\\\\u0438": 64, "\\\\u041e\\\\u0431\\\\u044a\\\\u0435\\\\u043c \\\\u043e\\\\u043f\\\\u0435\\\\u0440\\\\u0430\\\\u0442\\\\u0438\\\\u0432\\\\u043d\\\\u043e\\\\u0439 \\\\u043f\\\\u0430\\\\u043c\\\\u044f\\\\u0442\\\\u0438": 4, "\\\\u041a\\\\u043e\\\\u043b\\\\u0438\\\\u0447\\\\u0435\\\\u0441\\\\u0442\\\\u0432\\\\u043e \\\\u044f\\\\u0434\\\\u0435\\\\u0440 \\\\u043f\\\\u0440\\\\u043e\\\\u0446\\\\u0435\\\\u0441\\\\u0441\\\\u043e\\\\u0440\\\\u0430": 8}}, "\\\\u041e\\\\u0431\\\\u0449\\\\u0438\\\\u0435 \\\\u0445\\\\u0430\\\\u0440\\\\u0430\\\\u043a\\\\u0442\\\\u0435\\\\u0440\\\\u0438\\\\u0441\\\\u0442\\\\u0438\\\\u043a\\\\u0438": {"priority": 0, "parameters": {"\\\\u041c\\\\u0430\\\\u0442\\\\u0435\\\\u0440\\\\u0438\\\\u0430\\\\u043b \\\\u043a\\\\u043e\\\\u0440\\\\u043f\\\\u0443\\\\u0441\\\\u0430": "\\\\u043c\\\\u0435\\\\u0442\\\\u0430\\\\u043b\\\\u043b", "\\\\u0420\\\\u0435\\\\u0436\\\\u0438\\\\u043c \\\\u0440\\\\u0430\\\\u0431\\\\u043e\\\\u0442\\\\u044b \\\\u043d\\\\u0435\\\\u0441\\\\u043a\\\\u043e\\\\u043b\\\\u044c\\\\u043a\\\\u0438\\\\u0445 SIM-\\\\u043a\\\\u0430\\\\u0440\\\\u0442": "\\\\u041f\\\\u043e\\\\u043f\\\\u0435\\\\u0440\\\\u0435\\\\u043c\\\\u0435\\\\u043d\\\\u043d\\\\u044b\\\\u0439"}, "main_parameters": {"\\\\u0412\\\\u0435\\\\u0441": 180, "\\\\u0420\\\\u0430\\\\u0437\\\\u043c\\\\u0435\\\\u0440\\\\u044b (\\\\u0428x\\\\u0412x\\\\u0422)": "75.45x158.5x8.05", "\\\\u041a\\\\u043e\\\\u043b\\\\u0438\\\\u0447\\\\u0435\\\\u0441\\\\u0442\\\\u0432\\\\u043e SIM-\\\\u043a\\\\u0430\\\\u0440\\\\u0442": 2, "\\\\u041e\\\\u043f\\\\u0435\\\\u0440\\\\u0430\\\\u0446\\\\u0438\\\\u043e\\\\u043d\\\\u043d\\\\u0430\\\\u044f \\\\u0441\\\\u0438\\\\u0441\\\\u0442\\\\u0435\\\\u043c\\\\u0430": "Android"}}, "\\\\u041c\\\\u0443\\\\u043b\\\\u044c\\\\u0442\\\\u0438\\\\u043c\\\\u0435\\\\u0434\\\\u0438\\\\u0439\\\\u043d\\\\u044b\\\\u0435 \\\\u0432\\\\u043e\\\\u0437\\\\u043c\\\\u043e\\\\u0436\\\\u043d\\\\u043e\\\\u0441\\\\u0442\\\\u0438": {"priority": 2, "parameters": {"\\\\u0424\\\\u043e\\\\u0442\\\\u043e\\\\u0432\\\\u0441\\\\u043f\\\\u044b\\\\u0448\\\\u043a\\\\u0430": ["\\\\u0442\\\\u044b\\\\u043b\\\\u044c\\\\u043d\\\\u0430\\\\u044f", "\\\\u0441\\\\u0432\\\\u0435\\\\u0442\\\\u043e\\\\u0434\\\\u0438\\\\u043e\\\\u0434\\\\u043d\\\\u0430\\\\u044f"], "\\\\u041c\\\\u0430\\\\u043a\\\\u0441. \\\\u0440\\\\u0430\\\\u0437\\\\u0440\\\\u0435\\\\u0448\\\\u0435\\\\u043d\\\\u0438\\\\u0435 \\\\u0432\\\\u0438\\\\u0434\\\\u0435\\\\u043e": "1920x1080", "\\\\u0424\\\\u0443\\\\u043d\\\\u043a\\\\u0446\\\\u0438\\\\u0438 \\\\u0442\\\\u044b\\\\u043b\\\\u043e\\\\u0432\\\\u043e\\\\u0439 \\\\u0444\\\\u043e\\\\u0442\\\\u043e\\\\u043a\\\\u0430\\\\u043c\\\\u0435\\\\u0440\\\\u044b": "\\\\u0430\\\\u0432\\\\u0442\\\\u043e\\\\u0444\\\\u043e\\\\u043a\\\\u0443\\\\u0441", "\\\\u0414\\\\u0438\\\\u0430\\\\u0444\\\\u0440\\\\u0430\\\\u0433\\\\u043c\\\\u0430 \\\\u0442\\\\u044b\\\\u043b\\\\u043e\\\\u0432\\\\u043e\\\\u0439 \\\\u0444\\\\u043e\\\\u0442\\\\u043e\\\\u043a\\\\u0430\\\\u043c\\\\u0435\\\\u0440\\\\u044b": "F/2.2"}, "main_parameters": {"\\\\u0422\\\\u044b\\\\u043b\\\\u043e\\\\u0432\\\\u0430\\\\u044f \\\\u0444\\\\u043e\\\\u0442\\\\u043e\\\\u043a\\\\u0430\\\\u043c\\\\u0435\\\\u0440\\\\u0430": 12.0, "\\\\u0424\\\\u0440\\\\u043e\\\\u043d\\\\u0442\\\\u0430\\\\u043b\\\\u044c\\\\u043d\\\\u0430\\\\u044f \\\\u043a\\\\u0430\\\\u043c\\\\u0435\\\\u0440\\\\u0430": 5}}}
-3	Смартфон Apple iPhone 8 64GB	И это тоже не плохой телефон	47990.00	2	13	{}
 \.
 
 
@@ -974,6 +993,15 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 25	2018-06-01 12:53:50.522703+00	3	Смартфон Apple iPhone 8 64GB	2	[{"added": {"object": "ParameterProduct object (13)", "name": "parameter product"}}]	2	1
 26	2018-06-01 12:55:48.333536+00	3	Смартфон Apple iPhone 8 64GB	2	[{"changed": {"fields": ["value"], "name": "parameter product", "object": "ParameterProduct object (1)"}}]	2	1
 27	2018-06-01 12:56:35.893476+00	3	Смартфон Apple iPhone 8 64GB	2	[]	2	1
+28	2018-06-02 15:33:29.725231+00	2	Смартфон Samsung Galaxy S8	2	[{"changed": {"name": "images product", "object": "ImagesProduct object (10)", "fields": ["priority"]}}, {"changed": {"name": "images product", "object": "ImagesProduct object (11)", "fields": ["priority"]}}, {"added": {"name": "parameter product", "object": "\\u041e\\u043f\\u0435\\u0440\\u0430\\u0446\\u0438\\u043e\\u043d\\u043d\\u0430\\u044f \\u0441\\u0438\\u0441\\u0442\\u0435\\u043c\\u0430"}}, {"added": {"name": "parameter product", "object": "\\u041e\\u043f\\u0435\\u0440\\u0430\\u0442\\u0438\\u0432\\u043d\\u0430\\u044f \\u043f\\u0430\\u043c\\u044f\\u0442\\u044c (\\u0413\\u0411)"}}, {"added": {"name": "parameter product", "object": "\\u041a\\u043e\\u043b\\u0438\\u0447\\u0435\\u0441\\u0442\\u0432\\u043e \\u044f\\u0434\\u0435\\u0440"}}, {"added": {"name": "parameter product", "object": "\\u0424\\u0440\\u043e\\u043d\\u0442\\u0430\\u043b\\u044c\\u043d\\u0430\\u044f \\u0444\\u043e\\u0442\\u043e\\u043a\\u0430\\u043c\\u0435\\u0440\\u0430"}}, {"added": {"name": "parameter product", "object": "\\u0421\\u0432\\u044f\\u0437\\u044c"}}]	2	1
+29	2018-06-02 15:34:58.279799+00	1	Xiaomi Redmi 5 Plus 4/64GB	2	[{"added": {"name": "parameter product", "object": "\\u041e\\u043f\\u0435\\u0440\\u0430\\u0446\\u0438\\u043e\\u043d\\u043d\\u0430\\u044f \\u0441\\u0438\\u0441\\u0442\\u0435\\u043c\\u0430"}}, {"added": {"name": "parameter product", "object": "\\u041a\\u043e\\u043b\\u0438\\u0447\\u0435\\u0441\\u0442\\u0432\\u043e \\u044f\\u0434\\u0435\\u0440"}}, {"added": {"name": "parameter product", "object": "\\u041f\\u0430\\u043c\\u044f\\u0442\\u044c (\\u0413\\u0411)"}}, {"added": {"name": "parameter product", "object": "\\u041e\\u043f\\u0435\\u0440\\u0430\\u0442\\u0438\\u0432\\u043d\\u0430\\u044f \\u043f\\u0430\\u043c\\u044f\\u0442\\u044c (\\u0413\\u0411)"}}]	2	1
+30	2018-06-02 15:36:18.065539+00	1	Xiaomi Redmi 5 Plus 4/64GB	2	[{"changed": {"name": "images product", "object": "ImagesProduct object (12)", "fields": ["priority"]}}, {"changed": {"name": "images product", "object": "ImagesProduct object (13)", "fields": ["priority"]}}]	2	1
+31	2018-06-02 15:41:23.766743+00	4	Электроника	2	[{"changed": {"fields": ["priority"]}}]	1	1
+32	2018-06-02 15:41:35.597419+00	3	Бытовая техника	2	[{"changed": {"fields": ["priority"]}}]	1	1
+33	2018-06-02 15:41:41.563957+00	2	Компьютерная техника	2	[{"changed": {"fields": ["priority"]}}]	1	1
+34	2018-06-02 15:43:00.033548+00	5	Детские товары	1	[{"added": {}}, {"added": {"name": "category product", "object": "\\u0414\\u043b\\u044f \\u043c\\u0430\\u043c \\u0438 \\u043c\\u0430\\u043b\\u044b\\u0448\\u0435\\u0439"}}, {"added": {"name": "category product", "object": "\\u041f\\u043e\\u0434\\u0433\\u0443\\u0437\\u043d\\u0438\\u043a\\u0438"}}, {"added": {"name": "category product", "object": "\\u041c\\u0435\\u0431\\u0435\\u043b\\u044c"}}]	1	1
+35	2018-06-02 15:44:35.523617+00	6	Зоотовары	1	[{"added": {}}, {"added": {"object": "\\u041a\\u043e\\u0440\\u043c\\u0430", "name": "category product"}}, {"added": {"object": "\\u0418\\u0433\\u0440\\u0443\\u0448\\u043a\\u0438", "name": "category product"}}, {"added": {"object": "\\u0421\\u0440\\u0435\\u0434\\u0441\\u0442\\u0432\\u0430 \\u0433\\u0438\\u0433\\u0438\\u0435\\u043d\\u044b", "name": "category product"}}]	1	1
+36	2018-06-02 15:49:15.370152+00	4	Электроника	2	[{"changed": {"object": "\\u0422\\u0435\\u043b\\u0435\\u0444\\u043e\\u043d\\u044b", "name": "category product", "fields": ["priority"]}}, {"changed": {"object": "\\u0423\\u043c\\u043d\\u044b\\u0435 \\u0447\\u0430\\u0441\\u044b", "name": "category product", "fields": ["priority"]}}, {"changed": {"object": "\\u0422\\u0435\\u043b\\u0435\\u0432\\u0438\\u0437\\u043e\\u0440\\u044b", "name": "category product", "fields": ["priority"]}}]	1	1
 \.
 
 
@@ -981,7 +1009,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 27, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 36, true);
 
 
 --
@@ -1033,6 +1061,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 15	sessions	0001_initial	2018-05-31 13:58:15.098692+00
 16	catalog	0002_auto_20180601_1143	2018-06-01 11:44:17.568006+00
 17	catalog	0003_categoryparameterproduct_parameterproduct	2018-06-01 12:31:57.328201+00
+18	catalog	0004_auto_20180602_1539	2018-06-02 15:39:31.166115+00
+19	catalog	0005_categoryproduct_priority	2018-06-02 15:46:50.476825+00
 \.
 
 
@@ -1040,7 +1070,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 17, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 19, true);
 
 
 --
@@ -1049,6 +1079,7 @@ SELECT pg_catalog.setval('public.django_migrations_id_seq', 17, true);
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 rjg65yj0sr4ukzmbk9yykeo2efbsomvd	NjhhNmJiMzkwNmM3ZTFhZTdmNzZmYWI5NjJhNzdiYjM5NjI4ZDhhZDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiN2ZmNzUzMGRjYzUzMTM3NjgzNGFmYzk5YmI4ODdhOWQ5MjIyNDQzMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2018-06-14 14:29:56.314697+00
+2phcvr4xn0cfev8kk8umqe6hhmeo4m3q	OTJhODA0MGYxMzI5NzhiNmExOWM2OTZkMDE4YjExZGNiZmYxZDZkYTp7Il9hdXRoX3VzZXJfaGFzaCI6IjdmZjc1MzBkY2M1MzEzNzY4MzRhZmM5OWJiODg3YTlkOTIyMjQ0MzIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2018-06-16 15:29:52.192676+00
 \.
 
 
