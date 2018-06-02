@@ -2,13 +2,21 @@
 
 {% block content %}
 {% if product_list %}
-    <ul>
-    {% for product in product_list %}
-        <li><a href="{% url 'catalog:detail' product.id %}">{{ product.name }}</a></li>
-        <p>{{ product.cost }}</p>
-        <p>{{ product.rating }}</p>
-    {% endfor %}
-    </ul>
+  <div class="row">
+  {% for product in product_list %}
+    <div class="col-md-6 col-xl-4 d-flex align-items-stretch">
+      <div class="card text-center" >
+        <img src="{{ product.get_url_images.0 }}" width="100" align="middle" class="align-self-center">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }} - {{ product.cost }} руб.</h5>
+          <p class="card-text">Ретинг пользователей: {{ product.rating }}</p>
+          <p class="card-text">{{ product.description }}</p>
+          <a href="{% url 'catalog:detail' product.id %}" class="btn btn-primary">Посмотреть</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
 {% else %}
     <p>No products are available.</p>
 {% endif %}
