@@ -29,8 +29,19 @@
     <div class="tab-content" id="myTabContent">
       <div role="tabpanel" class="tab-pane fade active show" id="description" aria-labelledby="description-tab" aria-expanded="true">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-9">
+          <div class="col-1">
+            {% if images_url %}
+              {% for image_url in images_url %}
+                <p><img src="{{ image_url }}" height="100"></p>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="col-4">
+            {% if images_url %}
+              <p><img src="{{ images_url.0 }}" height="400"></p>
+            {% endif %}
+          </div>
+          <div class="col-7">
             <h3>Коротко о товаре</h3>
             <ul>
               {% for  parameter in main_parameters %}
@@ -43,9 +54,12 @@
       </div>
       <div class="tab-pane fade" id="parameter" role="tabpanel" aria-labelledby="parameter-tab" aria-expanded="false">
         <div class="row">
-          <div class="col-2">
+          <div class="col-4">
+            {% if images_url %}
+              <p><img src="{{ images_url.0 }}" height="400"></p>
+            {% endif %}
           </div>
-          <div class="col-10">
+          <div class="col-8">
             <h2>Характеристики</h2>
             {% for category in categorys_parameters %}
               <h3>{{ category.category }}</h3>

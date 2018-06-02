@@ -31,17 +31,13 @@ class Product(models.Model):
         return self.name
 
     def get_parameters(self):
-        parameters = ParameterProduct.objects.filter(
-            product_id__exact=self.id
-        ).order_by('priority')
-        return parameters
+        return self.parameterproduct_set.all().order_by('priority')
 
     def get_main_parameters(self):
         ''' Параметры с приоритетом меньше 1000 '''
-        parameters = ParameterProduct.objects.filter(
-            product_id__exact=self.id
-        ).filter(priority__lte=1000).order_by('priority')
-        return parameters
+        return self.parameterproduct_set.filter(
+            priority__lte=1000
+        ).order_by('priority')
 
     def get_categorys_with_parameters(self):
         parameters = self.get_parameters()
@@ -65,6 +61,10 @@ class Product(models.Model):
             })
 
         return categorys_with_parameters
+
+    def get_url_images(self):
+        images = self.imagesproduct_set.all().order_by('priority')
+        return [image.image_file.url for image in images]
 
 
 def product_directory_path(instance, filename):

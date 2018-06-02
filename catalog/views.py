@@ -75,6 +75,7 @@ class DetailView(generic.DetailView):
         context.update({
             'categorys_parameters': self.object.get_categorys_with_parameters(),
             'main_parameters': self.object.get_main_parameters(),
+            'images_url': self.object.get_url_images(),
             'categorys': get_categorys(),
         })
         print(context)
