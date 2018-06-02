@@ -39,10 +39,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 class CategoryProductAdmin(admin.ModelAdmin):
     inlines = [ProductInline]
+    list_display = ('name', 'priority')
 
 
 class MainCategoryProductAdmin(admin.ModelAdmin):
     inlines = [CategoryInline]
+    list_display = ('name', 'priority')
 
 
 class CategoryParameterProductAdmin(admin.ModelAdmin):

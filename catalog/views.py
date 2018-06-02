@@ -7,13 +7,13 @@ from .models import (
 
 def get_categorys():
     # TODO: Подумать над кешированием этих запросов
-    main_categorys = MainCategoryProduct.objects.all()
+    main_categorys = MainCategoryProduct.objects.all().order_by('priority')
     categorys = [
         {
             'main': main_category,
             'sub': CategoryProduct.objects.filter(
                 main_category_id__exact=main_category.id
-            ),
+            ).order_by('priority'),
         }
         for main_category in main_categorys
     ]

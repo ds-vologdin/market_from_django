@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import JSONField
 
 class MainCategoryProduct(models.Model):
     name = models.CharField(max_length=200)
+    priority = models.IntegerField(default=1000)
 
     def __str__(self):
         return self.name
@@ -14,6 +15,7 @@ class CategoryProduct(models.Model):
     main_category = models.ForeignKey(
         MainCategoryProduct, on_delete=models.CASCADE
     )
+    priority = models.IntegerField(default=1000)
 
     def __str__(self):
         return self.name
@@ -74,7 +76,7 @@ def product_directory_path(instance, filename):
 
 class ImagesProduct(models.Model):
     image_file = models.ImageField(upload_to=product_directory_path)
-    priority = models.IntegerField()
+    priority = models.IntegerField(default=1000)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
