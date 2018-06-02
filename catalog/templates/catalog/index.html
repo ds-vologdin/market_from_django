@@ -2,6 +2,9 @@
 
 {% block content %}
 {% if product_list %}
+  {% if current_category %}
+    <h1>{{ current_category.main_category.name }} - {{ current_category.name }}</h1>
+  {% endif %}
   <div class="row">
   {% for product in product_list %}
     <div class="col-md-6 col-xl-4 d-flex align-items-stretch">

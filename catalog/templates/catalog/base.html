@@ -53,8 +53,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {% for category in categorys %}
-            {% if main_category_product %}
-              {% if main_category_product.id == category.main.id %}
+            {% if current_category %}
+              {% if current_category.main_category.id == category.main.id %}
               <li class="nav-item dropdown active">
               {% else %}
               <li class="nav-item dropdown">
@@ -67,8 +67,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% for sub_category in category.sub %}
-                  {% if category_product %}
-                    {% if category_product.id == sub_category.id %}
+                  {% if current_category %}
+                    {% if current_category.id == sub_category.id %}
                       <a class="dropdown-item active" href="{% url 'catalog:index_category' sub_category.id %}">{{ sub_category.name }}</a>
                     {% else %}
                       <a class="dropdown-item" href="{% url 'catalog:index_category' sub_category.id %}">{{ sub_category.name }}</a>
