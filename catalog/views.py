@@ -9,9 +9,7 @@ def get_categorys():
     categorys = [
         {
             'main': main_category,
-            'sub': CategoryProduct.objects.filter(
-                main_category_id__exact=main_category.id
-            ).order_by('priority'),
+            'sub': main_category.categoryproduct_set.all().order_by('priority')
         }
         for main_category in main_categorys
     ]
