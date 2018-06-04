@@ -1,8 +1,6 @@
 from django.views import generic
 
-from .models import (
-    Product, MainCategoryProduct, CategoryProduct, ParameterProduct
-)
+from .models import Product, MainCategoryProduct, CategoryProduct
 
 
 def get_categorys():
@@ -20,14 +18,15 @@ def get_categorys():
     return categorys
 
 
-class CategorysToContext():
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({
-            'categorys': get_categorys(),
-        })
-        print(context)
-        return context
+# Хотел объявить класс mixins, однако get_context_data оказался везде
+# уникальным
+# class CategorysToContext():
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context.update({
+#             'categorys': get_categorys(),
+#         })
+#         return context
 
 
 class IndexView(generic.ListView):
@@ -48,7 +47,6 @@ class IndexView(generic.ListView):
             context['current_category'] = CategoryProduct.objects.get(
                 pk=self.kwargs['category_id']
             )
-        print(context)
         return context
 
 
@@ -88,5 +86,4 @@ class DetailView(generic.DetailView):
             'images_url': self.object.get_url_images(),
             'categorys': get_categorys(),
         })
-        print(context)
         return context
