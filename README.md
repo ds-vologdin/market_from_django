@@ -22,7 +22,7 @@ pip install -r requirements.txt
 #### Настройка postgres
 Для начала необходимо создать базу и её владельца в postgres.
 ```
-postgres=# CREATE USER django PASSWORD 'pasword';
+postgres=# CREATE USER django PASSWORD 'password';
 postgres=# CREATE DATABASE django_market OWNER django;
 ```
 Настройте доступ для пользователя django в pg_hba.conf
