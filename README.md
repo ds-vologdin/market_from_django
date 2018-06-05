@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 Например, postgres можно поселить в lxc контейнере на сервере рядом с market_from_django. При необходимости несложно будет эту БД перенести на другой хост.
 
-Подробнее об установке postgres
+Подробнее об установке postgres можете посмотреть в [официальной документации](https://www.postgresql.org/download/).
 #### Настройка postgres
 Для начала необходимо создать базу и её владельца в postgres.
 ```
@@ -33,3 +33,10 @@ postgres=# CREATE DATABASE django_market OWNER django;
 psql -h hostname -U django django_market < django_market_dump.sql
 ```
 **Однако это не самый правильный путь. Лучше выполните миграции**
+
+## Тестовый запуск
+Если вы хотите просто посмотреть проект, то вас вполне удовлетворит встроенный в django http-сервер.
+
+```python manage.py runserver```
+
+Если вы решили развить проект и использовать его "в бою", тогда вам надо смотреть в сторону запуска приложения через uwsgi в связке с nginx (или apache2 с wsgi модулем).
