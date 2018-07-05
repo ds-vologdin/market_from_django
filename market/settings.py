@@ -1,68 +1,59 @@
 import os
-import logging
+from configurations import Configuration
 
-from market.parse_config import parse_config
+from .settings_privat import DatabaseDevMixins, SecretKeyMixins
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+class Base(Configuration):
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # Обязательно переопределите в SecretKeyMixins
+    SECRET_KEY = 'secret_key'
 
-SECRET_KEY = '2t9t@@n6!c=*_y#axs7ar2fgy**5tf$720du2c!tz_95y-&)!e'
+    DEBUG = False
 
-DEBUG = True
+    ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+    INSTALLED_APPS = [
+        'catalog.apps.CatalogConfig',
+        'django_extensions',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
 
-INSTALLED_APPS = [
-    'catalog.apps.CatalogConfig',
-    'django_extensions',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    ROOT_URLCONF = 'market.urls'
 
-ROOT_URLCONF = 'market.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
-]
+    ]
 
-WSGI_APPLICATION = 'market.wsgi.application'
+    WSGI_APPLICATION = 'market.wsgi.application'
 
-file_config = '/etc/django_market.conf'
-config = parse_config(file_config)
-if not config:
-    # если /etc/django_market.conf не смогли прочитать, берём конфиг из примера
-    logging.error('config file "{}" not found'.format(file_config))
-    config = parse_config('market/django_market.conf')
-
-if 'DATABASES' in config:
-    DATABASES = config['DATABASES']
-else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -70,27 +61,39 @@ else:
         }
     }
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
+    LANGUAGE_CODE = 'en-us'
+    TIME_ZONE = 'UTC'
+    USE_I18N = True
+    USE_L10N = True
+    USE_TZ = True
 
-STATIC_URL = '/static/'
-MEDIA_ROOT = BASE_DIR + '/media/'
-MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
+    MEDIA_ROOT = BASE_DIR + '/media/'
+    MEDIA_URL = '/media/'
+
+
+class Dev(DatabaseDevMixins, SecretKeyMixins, Base):
+    DEBUG = True
+
+
+# В wsgi.py и manage.py подгружаем ConfigClass
+# Это давляет чуть больше гибкости. Если мы захотим подгрузить другой класс
+# конфигрурации, делать это придётся в одном месте. Так ConfigClass
+# используется ещё в urls.py, а может и ещё где-то придётся к нему обрщаться
+# напрямую
+ConfigClass = Dev

@@ -3,7 +3,7 @@ from django.urls import path, include
 
 from django.contrib.staticfiles.urls import static
 
-from . import settings
+from .settings import ConfigClass
 
 
 urlpatterns = [
@@ -11,4 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if ConfigClass.DEBUG:
+    urlpatterns += static(
+        ConfigClass.MEDIA_URL, document_root=ConfigClass.MEDIA_ROOT
+    )
