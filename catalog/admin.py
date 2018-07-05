@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from .models import Product, CategoryProduct, MainCategoryProduct, \
     ImagesProduct, ParameterProduct, CategoryParameterProduct
-# Register your models here.
 
 
 class CategoryInline(admin.TabularInline):
@@ -30,9 +29,6 @@ class ProductAdmin(admin.ModelAdmin):
         (None, {'fields': ['name', 'description', 'cost', 'category']}),
         ('Rating', {'fields': ['rating']}),
     ]
-    # inlines = [CategoryInline]
-    # list_display = ('question_text', 'pub_date', 'was_published_recently')
-    # list_filter = ['pub_date']
     search_fields = ['name']
     inlines = [ImagesProductInline, ParameterProductInline]
 

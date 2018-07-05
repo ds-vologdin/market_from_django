@@ -16,17 +16,6 @@ def get_categorys():
     return categorys
 
 
-# Хотел объявить класс mixins, однако get_context_data оказался везде
-# уникальным
-# class CategorysToContext():
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context.update({
-#             'categorys': get_categorys(),
-#         })
-#         return context
-
-
 class IndexView(generic.ListView):
     model = Product
     template_name = 'catalog/index.html'
