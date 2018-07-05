@@ -15,7 +15,7 @@ class CategoryProduct(models.Model):
         MainCategoryProduct, on_delete=models.CASCADE
     )
     # Вес категории. Чем ниже значение приортиета, тем выше вес.
-    # Используется при рендеринге страницы
+    # Используется при рендеринге страницы для сортировки.
     # Поумолчанию 1000, что бы случайно забытые категории не вылезли в топ
     priority = models.IntegerField(default=1000)
 
@@ -83,6 +83,10 @@ class ImagesProduct(models.Model):
 
 class CategoryParameterProduct(models.Model):
     name = models.CharField(max_length=200)
+    # Вес категории параметра. Чем ниже значение приортиета, тем выше вес.
+    # Используется при рендеринге страницы для сортировки.
+    # По-умолчанию 1000, что бы случайно забытые категории параметров
+    # не вылезли в топ.
     priority = models.IntegerField(default=1000)
 
     def __str__(self):
@@ -102,7 +106,7 @@ class ParameterProduct(models.Model):
     value = models.CharField(max_length=200)
     type = models.CharField(max_length=20, choices=CHOCES_TYPE, default='str')
     # Вес параметра. Чем ниже значение приортиета, тем выше вес.
-    # Используется при рендеринге страницы.
+    # Используется при рендеринге страницы для сортировки.
     # По-умолчанию 1000, что бы случайно забытые параметры не вылезли в топ.
     # А кроме того все параметры с приортетом меньше считаются основными.
     priority = models.IntegerField(default=1000)
