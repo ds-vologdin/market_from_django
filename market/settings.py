@@ -14,6 +14,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
