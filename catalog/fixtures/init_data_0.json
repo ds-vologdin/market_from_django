@@ -1,0 +1,594 @@
+[
+{
+    "model": "catalog.maincategoryproduct",
+    "pk": 2,
+    "fields": {
+        "name": "\u041a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u0430\u044f \u0442\u0435\u0445\u043d\u0438\u043a\u0430",
+        "priority": 30
+    }
+},
+{
+    "model": "catalog.maincategoryproduct",
+    "pk": 3,
+    "fields": {
+        "name": "\u0411\u044b\u0442\u043e\u0432\u0430\u044f \u0442\u0435\u0445\u043d\u0438\u043a\u0430",
+        "priority": 20
+    }
+},
+{
+    "model": "catalog.maincategoryproduct",
+    "pk": 4,
+    "fields": {
+        "name": "\u042d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u0438\u043a\u0430",
+        "priority": 10
+    }
+},
+{
+    "model": "catalog.maincategoryproduct",
+    "pk": 5,
+    "fields": {
+        "name": "\u0414\u0435\u0442\u0441\u043a\u0438\u0435 \u0442\u043e\u0432\u0430\u0440\u044b",
+        "priority": 40
+    }
+},
+{
+    "model": "catalog.maincategoryproduct",
+    "pk": 6,
+    "fields": {
+        "name": "\u0417\u043e\u043e\u0442\u043e\u0432\u0430\u0440\u044b",
+        "priority": 50
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 6,
+    "fields": {
+        "name": "\u041f\u043b\u0430\u043d\u0448\u0435\u0442\u044b",
+        "main_category": 2,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 7,
+    "fields": {
+        "name": "\u041d\u043e\u0443\u0442\u0431\u0443\u043a\u0438",
+        "main_category": 2,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 8,
+    "fields": {
+        "name": "\u041d\u0430\u0441\u0442\u043e\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u044b",
+        "main_category": 2,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 9,
+    "fields": {
+        "name": "\u0421\u0435\u0440\u0432\u0435\u0440\u044b",
+        "main_category": 2,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 10,
+    "fields": {
+        "name": "\u0421\u0442\u0438\u0440\u0430\u043b\u044c\u043d\u044b\u0435 \u043c\u0430\u0448\u0438\u043d\u044b",
+        "main_category": 3,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 11,
+    "fields": {
+        "name": "\u041f\u044b\u043b\u0435\u0441\u043e\u0441\u044b",
+        "main_category": 3,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 12,
+    "fields": {
+        "name": "\u0423\u0442\u044e\u0433\u0438",
+        "main_category": 3,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 13,
+    "fields": {
+        "name": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d\u044b",
+        "main_category": 4,
+        "priority": 10
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 14,
+    "fields": {
+        "name": "\u0423\u043c\u043d\u044b\u0435 \u0447\u0430\u0441\u044b",
+        "main_category": 4,
+        "priority": 20
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 15,
+    "fields": {
+        "name": "\u0422\u0435\u043b\u0435\u0432\u0438\u0437\u043e\u0440\u044b",
+        "main_category": 4,
+        "priority": 30
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 16,
+    "fields": {
+        "name": "\u0414\u043b\u044f \u043c\u0430\u043c \u0438 \u043c\u0430\u043b\u044b\u0448\u0435\u0439",
+        "main_category": 5,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 17,
+    "fields": {
+        "name": "\u041f\u043e\u0434\u0433\u0443\u0437\u043d\u0438\u043a\u0438",
+        "main_category": 5,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 18,
+    "fields": {
+        "name": "\u041c\u0435\u0431\u0435\u043b\u044c",
+        "main_category": 5,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 19,
+    "fields": {
+        "name": "\u041a\u043e\u0440\u043c\u0430",
+        "main_category": 6,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 20,
+    "fields": {
+        "name": "\u0418\u0433\u0440\u0443\u0448\u043a\u0438",
+        "main_category": 6,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.categoryproduct",
+    "pk": 21,
+    "fields": {
+        "name": "\u0421\u0440\u0435\u0434\u0441\u0442\u0432\u0430 \u0433\u0438\u0433\u0438\u0435\u043d\u044b",
+        "main_category": 6,
+        "priority": 1000
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Xiaomi Redmi 5 Plus 4/64GB",
+        "description": "\u043e\u0442\u043b\u0438\u0447\u043d\u044b\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d!",
+        "cost": "11890.00",
+        "rating": 5,
+        "category": 13
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "\u0421\u043c\u0430\u0440\u0442\u0444\u043e\u043d Samsung Galaxy S8",
+        "description": "\u0445\u043e\u0440\u043e\u0448\u0438\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d",
+        "cost": "36990.00",
+        "rating": 4,
+        "category": 13
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "\u0421\u043c\u0430\u0440\u0442\u0444\u043e\u043d Apple iPhone 8 64GB",
+        "description": "\u0418 \u044d\u0442\u043e \u0442\u043e\u0436\u0435 \u043d\u0435 \u043f\u043b\u043e\u0445\u043e\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d",
+        "cost": "47990.00",
+        "rating": 2,
+        "category": 13
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 7,
+    "fields": {
+        "image_file": "product_3/i0.jpg",
+        "priority": 1,
+        "product": 3
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 8,
+    "fields": {
+        "image_file": "product_3/i1.jpg",
+        "priority": 2,
+        "product": 3
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 9,
+    "fields": {
+        "image_file": "product_3/i3.jpg",
+        "priority": 3,
+        "product": 3
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 10,
+    "fields": {
+        "image_file": "product_2/Galaxy-S8.jpg",
+        "priority": 2,
+        "product": 2
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 11,
+    "fields": {
+        "image_file": "product_2/Galaxy-S8-1.jpg",
+        "priority": 1,
+        "product": 2
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 12,
+    "fields": {
+        "image_file": "product_1/thumb_114131_default_big.jpeg",
+        "priority": 2,
+        "product": 1
+    }
+},
+{
+    "model": "catalog.imagesproduct",
+    "pk": 13,
+    "fields": {
+        "image_file": "product_1/6cd00a8acda0263c3d0fe5fa38f09738.jpeg",
+        "priority": 1,
+        "product": 1
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 1,
+    "fields": {
+        "name": "\u041e\u0431\u0449\u0438\u0435 \u0445\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0438",
+        "priority": 0
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 2,
+    "fields": {
+        "name": "\u042d\u043a\u0440\u0430\u043d",
+        "priority": 30
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 3,
+    "fields": {
+        "name": "\u041c\u0443\u043b\u044c\u0442\u0438\u043c\u0435\u0434\u0438\u0439\u043d\u044b\u0435 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u0438",
+        "priority": 10
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 4,
+    "fields": {
+        "name": "\u0421\u0432\u044f\u0437\u044c",
+        "priority": 40
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 5,
+    "fields": {
+        "name": "\u041f\u0430\u043c\u044f\u0442\u044c \u0438 \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440",
+        "priority": 20
+    }
+},
+{
+    "model": "catalog.categoryparameterproduct",
+    "pk": 6,
+    "fields": {
+        "name": "\u041f\u0438\u0442\u0430\u043d\u0438\u0435",
+        "priority": 50
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 1,
+    "fields": {
+        "name": "\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430",
+        "value": "IOS",
+        "type": "str",
+        "priority": 0,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 2,
+    "fields": {
+        "name": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e SIM-\u043a\u0430\u0440\u0442",
+        "value": "2",
+        "type": "int",
+        "priority": 10,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 3,
+    "fields": {
+        "name": "\u0412\u0435\u0441",
+        "value": "180 \u0433.",
+        "type": "str",
+        "priority": 20,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 4,
+    "fields": {
+        "name": "\u0420\u0430\u0437\u043c\u0435\u0440\u044b (\u0428x\u0412x\u0422)",
+        "value": "75.45x158.5x8.05",
+        "type": "str",
+        "priority": 30,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 5,
+    "fields": {
+        "name": "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u043a\u043e\u0440\u043f\u0443\u0441\u0430",
+        "value": "\u043c\u0435\u0442\u0430\u043b\u043b",
+        "type": "str",
+        "priority": 1010,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 6,
+    "fields": {
+        "name": "\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 SIM-\u043a\u0430\u0440\u0442",
+        "value": "\u041f\u043e\u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0439",
+        "type": "str",
+        "priority": 1000,
+        "product": 3,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 7,
+    "fields": {
+        "name": "\u0422\u0438\u043f \u044d\u043a\u0440\u0430\u043d\u0430",
+        "value": "('\u0446\u0432\u0435\u0442\u043d\u043e\u0439', '\u0441\u0435\u043d\u0441\u043e\u0440\u043d\u044b\u0439')",
+        "type": "list",
+        "priority": 1010,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 8,
+    "fields": {
+        "name": "\u0422\u0438\u043f \u0441\u0435\u043d\u0441\u043e\u0440\u043d\u043e\u0433\u043e \u044d\u043a\u0440\u0430\u043d\u0430",
+        "value": "('\u043c\u0443\u043b\u044c\u0442\u0438\u0442\u0430\u0447', '\u0435\u043c\u043a\u043e\u0441\u0442\u043d\u044b\u0439')",
+        "type": "list",
+        "priority": 1020,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 9,
+    "fields": {
+        "name": "\u0427\u0438\u0441\u043b\u043e \u043f\u0438\u043a\u0441\u0435\u043b\u0435\u0439 \u043d\u0430 \u0434\u044e\u0439\u043c (PPI)",
+        "value": "403",
+        "type": "int",
+        "priority": 1030,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 10,
+    "fields": {
+        "name": "\u0421\u043e\u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u0435 \u0441\u0442\u043e\u0440\u043e\u043d",
+        "value": "18:9",
+        "type": "str",
+        "priority": 1040,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 11,
+    "fields": {
+        "name": "\u0414\u0438\u0430\u0433\u043e\u043d\u0430\u043b\u044c",
+        "value": "5.99",
+        "type": "float",
+        "priority": 10,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 12,
+    "fields": {
+        "name": "\u0420\u0430\u0437\u043c\u0435\u0440 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f",
+        "value": "2160x1080",
+        "type": "str",
+        "priority": 20,
+        "product": 3,
+        "category": 2
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 13,
+    "fields": {
+        "name": "\u0424\u043e\u0442\u043e\u0432\u0441\u043f\u044b\u0448\u043a\u0430",
+        "value": "('\u0442\u044b\u043b\u044c\u043d\u0430\u044f', '\u0441\u0432\u0435\u0442\u043e\u0434\u0438\u043e\u0434\u043d\u0430\u044f')",
+        "type": "list",
+        "priority": 1000,
+        "product": 3,
+        "category": 3
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 14,
+    "fields": {
+        "name": "\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430",
+        "value": "Android",
+        "type": "str",
+        "priority": 10,
+        "product": 2,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 15,
+    "fields": {
+        "name": "\u041e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u0430\u044f \u043f\u0430\u043c\u044f\u0442\u044c (\u0413\u0411)",
+        "value": "16",
+        "type": "int",
+        "priority": 30,
+        "product": 2,
+        "category": 5
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 16,
+    "fields": {
+        "name": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u044f\u0434\u0435\u0440",
+        "value": "8",
+        "type": "int",
+        "priority": 20,
+        "product": 2,
+        "category": 5
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 17,
+    "fields": {
+        "name": "\u0424\u0440\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u0430\u044f \u0444\u043e\u0442\u043e\u043a\u0430\u043c\u0435\u0440\u0430",
+        "value": "True",
+        "type": "bool",
+        "priority": 1000,
+        "product": 2,
+        "category": 3
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 18,
+    "fields": {
+        "name": "\u0421\u0432\u044f\u0437\u044c",
+        "value": "(3g, 4g, wifi)",
+        "type": "list",
+        "priority": 40,
+        "product": 2,
+        "category": 4
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 19,
+    "fields": {
+        "name": "\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430",
+        "value": "Android",
+        "type": "str",
+        "priority": 10,
+        "product": 1,
+        "category": 1
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 20,
+    "fields": {
+        "name": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u044f\u0434\u0435\u0440",
+        "value": "4",
+        "type": "int",
+        "priority": 20,
+        "product": 1,
+        "category": 5
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 21,
+    "fields": {
+        "name": "\u041f\u0430\u043c\u044f\u0442\u044c (\u0413\u0411)",
+        "value": "64",
+        "type": "int",
+        "priority": 30,
+        "product": 1,
+        "category": 5
+    }
+},
+{
+    "model": "catalog.parameterproduct",
+    "pk": 22,
+    "fields": {
+        "name": "\u041e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u0430\u044f \u043f\u0430\u043c\u044f\u0442\u044c (\u0413\u0411)",
+        "value": "8",
+        "type": "int",
+        "priority": 40,
+        "product": 1,
+        "category": 5
+    }
+}
+]

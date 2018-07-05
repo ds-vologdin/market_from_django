@@ -27,8 +27,6 @@ class Product(models.Model):
     cost = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
     rating = models.IntegerField()
     category = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE)
-    # TODO: предусмотреть размещение параметров продукта в jsonb
-    parameters = JSONField(default={})
 
     def __str__(self):
         return self.name
